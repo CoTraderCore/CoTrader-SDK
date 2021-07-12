@@ -1,5 +1,13 @@
 require('dotenv').config()
-const getMerkleTreeData = require("./utils/getMerkleTreeData")
+const getOneInchData = require("./utils/getOneInchData")
 
-const { proof, positions } = getMerkleTreeData("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")
-console.log(proof, positions)
+async function test() {
+   console.log(await getOneInchData(
+     "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+     "0x0000000000004946c0e9f43f4dee607b0ef1fa1c",
+     "10000000000000000",
+     "0x0000000000004946c0e9f43f4dee607b0ef1fa1c"
+   ))
+}
+
+test()
