@@ -1,5 +1,9 @@
 # Rover-buy-bot
 
+```
+STATUS: NOT FINISHED 
+```
+
 # create env
 ```
 WEB3_NODE=
