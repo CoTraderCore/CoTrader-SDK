@@ -1,0 +1,25 @@
+{
+  "name": "Rover-buy-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoverCapital/Rover-buy-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoverCapital/Rover-buy-bot/issues"
+  },
+  "homepage": "https://github.com/RoverCapital/Rover-buy-bot#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "web3": "^1.3.6",
+    "web3-utils": "^1.3.6"
+  }
+}
