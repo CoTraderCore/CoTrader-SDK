@@ -19,6 +19,8 @@
   "homepage": "https://github.com/RoverCapital/Rover-buy-bot#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "keccak256": "^1.0.3",
+    "merkletreejs": "^0.2.22",
     "web3": "^1.3.6",
     "web3-utils": "^1.3.6"
   }

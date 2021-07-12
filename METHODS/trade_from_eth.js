@@ -7,6 +7,10 @@ const privateKeyToAccount = require("../utils/privateKeyToAccount")
 const createTx = async (key, fundAddress, amount, toToken, minReturn) => {
   const from = privateKeyToAccount(key)
   const contract = new web3.eth.Contract(ETH_FUND_ABI, fundAddress)
+  const {
+    proof,
+    positions
+  } = getMerkleTreeData(toToken)
 
   const data = contract.methods.trade(
     minReturn,

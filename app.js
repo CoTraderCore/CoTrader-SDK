@@ -1,4 +1,5 @@
 require('dotenv').config()
-const privateKeyToAccount = require("./utils/privateKeyToAccount")
+const getMerkleTreeData = require("./utils/getMerkleTreeData")
 
-console.log(privateKeyToAccount(process.env.KEY))
+const { proof, positions } = getMerkleTreeData("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")
+console.log(proof, positions)
