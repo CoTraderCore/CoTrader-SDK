@@ -7,8 +7,8 @@ const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const getOneInchData = require("../utils/getOneInchData")
 const wei = require("../utils/wei")
 
-const createTx = async (key, fundAddress, fromToken, fromToken, toToken, minReturn, dexType) => {
-  const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(fromToken), web3)
+const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
+  const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(amount), web3)
   const from = privateKeyToAccount(key)
   const contract = new web3.eth.Contract(ETH_FUND_ABI, fundAddress)
   const {
