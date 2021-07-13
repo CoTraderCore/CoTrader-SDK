@@ -1,10 +1,14 @@
 require('dotenv').config()
 
-const { ETH_FUND_ABI } = require("../ABI")
+const { ETH_FUND_ABI } = require("../abi")
 const web3 = require("../utils/web3Provider")()
 const privateKeyToAccount = require("../utils/privateKeyToAccount")
+const getMerkleTreeData = require("../utils/getMerkleTreeData")
+const getOneInchData = require("../utils/getOneInchData")
+const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
 
-const createTx = async (key, fundAddress, amount, toToken, minReturn) => {
+const createTx = async (key, fundAddress, amount, toToken, minReturn, dexType) => {
+  const amountInWei = web3.utils.toWei(amount)
   const from = privateKeyToAccount(key)
   const contract = new web3.eth.Contract(ETH_FUND_ABI, fundAddress)
   const {
@@ -12,11 +16,23 @@ const createTx = async (key, fundAddress, amount, toToken, minReturn) => {
     positions
   } = getMerkleTreeData(toToken)
 
+  let additionalData = "0x"
+
+  // 1 inch case
+  if(dexType === 0 && process.env.CHAINID === 56){
+    const exchangePortal = await contract.methods.exchangePortal.call()
+    additionalData = await (ETH_ADDRESS, toToken, amountInWei, exchangePortal)
+  }
+
   const data = contract.methods.trade(
-    minReturn,
-    [ADDRESS.WETH, ADDRESS.UNDERLYING_TOKEN],
-    from,
-    "111111111111111111"
+    ETH_ADDRESS,
+    amountInWei,
+    toToken,
+    0,
+    proof,
+    positions,
+    additionalData,
+    minReturn
   ).encodeABI({from})
 
   const nonce = await web3.eth.getTransactionCount(from)
@@ -24,7 +40,7 @@ const createTx = async (key, fundAddress, amount, toToken, minReturn) => {
   const tx = {
     from,
     to: fundAddress,
-    value: amount,
+    value: amountInWei,
     data,
     "gasPrice": process.env.GASPRICE,
     "gas": process.env.GAS,
@@ -35,7 +51,7 @@ const createTx = async (key, fundAddress, amount, toToken, minReturn) => {
   return tx
 }
 
-module.exports = async (key, fundAddress, amount, toToken, minReturn) => {
+module.exports = async (key, fundAddress, amount, toToken, minReturn, dexType) => {
   const tx = await createTx(key, fundAddress, amount, toToken, minReturn)
   const signed  = await web3.eth.accounts.signTransaction(tx, key, false)
   const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction)
