@@ -1,16 +1,17 @@
 # Rover-buy-bot
 
 ```
-STATUS: NOT FINISHED 
+STATUS: NOT FINISHED
 ```
 
-# create env
+# create .env file 
 ```
-WEB3_NODE=
-KEY="Your_key"
-GASPRICE=
-GAS=
-CHAINID=
+WEB3_NODE="https://bsc-dataseed1.ninicoin.io/"
+GASPRICE=5000000000
+GAS=300000
+CHAINID=56
+
+KEY="YOUR PRIVATE KEY"
 ```
 
 # run
