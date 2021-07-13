@@ -12,11 +12,13 @@ const fund = new Fund(privateKey, fundAddress, dexType)
 // define some tokens
 const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"
 
-// Run your code here
+// put your code here
 async function app() {
-  // test trade from eth to token
+  // test trade from eth to busd
   const hash = await fund.tradeFromETH(BUSD, "0.0001", 1)
+  // log info 
   console.log(`Success hash ${hash}`)
 }
 
+// run
 app()

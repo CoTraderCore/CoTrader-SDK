@@ -1,10 +1,10 @@
-# Rover-buy-bot
+# CoTrader SDK
 
 ```
 STATUS: NOT FINISHED
 ```
 
-# create .env file 
+# create .env file
 ```
 WEB3_NODE="https://bsc-dataseed1.ninicoin.io/"
 GASPRICE=5000000000
