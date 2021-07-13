@@ -53,7 +53,7 @@ const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn,
 
 module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
   const tx = await createTx(key, fundAddress, amount, toToken, minReturn, dexType)
-  const signed  = await web3.eth.accounts.signTransaction(tx, key, false)
+  const signed  = await web3.eth.accounts.signTransaction(tx, key)
   const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction)
 
   return receipt.transactionHash
