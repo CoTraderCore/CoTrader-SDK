@@ -4,7 +4,7 @@ class Fund {
   constructor(key, fundAddress, dexType){
     this.key = key
     this.fundAddress = fundAddress
-    this.dexType
+    this.dexType = dexType
   }
 
   tradeFromETH = async (toToken, amount, minReturn) =>{

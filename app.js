@@ -11,9 +11,9 @@ const fund = new Fund(privateKey, fundAddress, dexType)
 
 // Run your code here
 async function app() {
-  const toToken = '0xd3b6933a448ff602711390f96e15c0b9cab5ff11'
+  const toToken = '0x304fC73e86601a61a6C6db5B0eAfEA587622acdC' // bCOT
   // test trade from eth to token
-  const hash = await fund.tradeFromETH(toToken, "0.01", 1)
+  const hash = await fund.tradeFromETH(toToken, "0.0001", 1)
   console.log(`Success hash ${hash}`)
 }
 

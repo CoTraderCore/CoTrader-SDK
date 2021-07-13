@@ -20,8 +20,8 @@ const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn,
 
   // 1 inch case
   if(dexType === 0 && process.env.CHAINID === 56){
-    const exchangePortal = await contract.methods.exchangePortal.call()
-    additionalData = await (ETH_ADDRESS, toToken, amountInWei, exchangePortal)
+    const exchangePortal = await contract.methods.exchangePortal().call()
+    additionalData = await getOneInchData(fromToken, toToken, amountInWei, exchangePortal)
   }
 
   const data = contract.methods.trade(
@@ -52,7 +52,7 @@ const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn,
 }
 
 module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
-  const tx = await createTx(key, fundAddress, amount, toToken, minReturn)
+  const tx = await createTx(key, fundAddress, amount, toToken, minReturn, dexType)
   const signed  = await web3.eth.accounts.signTransaction(tx, key, false)
   const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction)
 
