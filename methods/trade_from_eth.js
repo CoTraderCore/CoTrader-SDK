@@ -28,7 +28,7 @@ const createTx = async (key, fundAddress, amount, toToken, minReturn, dexType) =
     ETH_ADDRESS,
     amountInWei,
     toToken,
-    0,
+    dexType,
     proof,
     positions,
     additionalData,
