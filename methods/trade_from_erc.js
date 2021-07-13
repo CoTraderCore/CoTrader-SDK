@@ -19,7 +19,7 @@ const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn,
   let additionalData = "0x"
 
   // 1 inch case
-  if(dexType === 0 && process.env.CHAINID === 56){
+  if(dexType === 0){
     const exchangePortal = await contract.methods.exchangePortal().call()
     additionalData = await getOneInchData(fromToken, toToken, amountInWei, exchangePortal)
   }
