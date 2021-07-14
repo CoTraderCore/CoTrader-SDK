@@ -1,7 +1,9 @@
 # CoTrader SDK
 
+# todo
 ```
-STATUS: NOT FINISHED
+1) Allow user select accounts, not hardcode account[0]
+2) Add deposit, withdraw ect
 ```
 
 # create .env file

@@ -4,40 +4,30 @@ const { ETH_FUND_ABI } = require("../abi")
 const web3 = require("../utils/web3Provider")()
 const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const getOneInchData = require("../utils/getOneInchData")
-const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+const wei = require("../utils/wei")
 
-
-
-module.exports = async (key, fundAddress, amount, toToken, minReturn, dexType) => {
-  // get fund contract instance
-  const contract = new web3.eth.Contract(ETH_FUND_ABI, fundAddress)
-
-  // convert ETH input to wei
-  const amountInWei = web3.utils.toWei(amount)
-
-  // get from address
+module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
+  const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(amount), web3)
   const accounts = await web3.eth.getAccounts()
   const from = accounts[0]
-
-  // get merkle three data
+  const contract = new web3.eth.Contract(ETH_FUND_ABI, fundAddress)
   const {
     proof,
     positions
   } = getMerkleTreeData(toToken)
 
-  // get additional data (require for 1 inch case)
   let additionalData = "0x"
+
   // 1 inch case
   if(dexType === 0){
     const exchangePortal = await contract.methods.exchangePortal().call()
-    additionalData = await getOneInchData(ETH_ADDRESS, toToken, amountInWei, exchangePortal)
+    additionalData = await getOneInchData(fromToken, toToken, amountInWei, exchangePortal)
   }
 
   let status = false
   try{
-    // tx
     await contract.methods.trade(
-      ETH_ADDRESS,
+      fromToken,
       amountInWei,
       toToken,
       dexType,
@@ -45,10 +35,11 @@ module.exports = async (key, fundAddress, amount, toToken, minReturn, dexType) =
       positions,
       additionalData,
       minReturn
-    ).send({ from, "gasPrice": process.env.GASPRICE, "gas": process.env.GAS })
+    ).send({ from })
+
     status = true
   }catch(e){
-    console.log("Trade from ETH error : ",e)
+    console.log("Trade error : ", e)
   }
 
   return status

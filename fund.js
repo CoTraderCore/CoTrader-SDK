@@ -1,4 +1,6 @@
-const { TradeFromETH, TradeFromERC } = require('./methods')
+// TODO: add deposit, withdraw methods
+
+const { Trade } = require('./methods')
 
 class Fund {
   constructor(key, fundAddress, dexType){
@@ -7,19 +9,8 @@ class Fund {
     this.dexType = dexType
   }
 
-  tradeFromETH = async (toToken, amount, minReturn) =>{
-    return await TradeFromETH(
-      this.key,
-      this.fundAddress,
-      amount,
-      toToken,
-      minReturn,
-      this.dexType
-    )
-  }
-
-  tradeFromToken = async (fromToken, toToken, amount, minReturn) => {
-    return await TradeFromERC(
+  trade = async (fromToken, toToken, amount, minReturn) => {
+    return await Trade(
       this.key,
       this.fundAddress,
       amount,
