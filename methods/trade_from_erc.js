@@ -7,9 +7,10 @@ const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const getOneInchData = require("../utils/getOneInchData")
 const wei = require("../utils/wei")
 
-const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
+module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
   const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(amount), web3)
-  const from = privateKeyToAccount(key)
+  const accounts = await web3.eth.getAccounts()
+  const from = accounts[0]
   const contract = new web3.eth.Contract(ETH_FUND_ABI, fundAddress)
   const {
     proof,
@@ -24,7 +25,7 @@ const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn,
     additionalData = await getOneInchData(fromToken, toToken, amountInWei, exchangePortal)
   }
 
-  const data = contract.methods.trade(
+  return await contract.methods.trade(
     fromToken,
     amountInWei,
     toToken,
@@ -33,28 +34,5 @@ const createTx = async (key, fundAddress, amount, fromToken, toToken, minReturn,
     positions,
     additionalData,
     minReturn
-  ).encodeABI({from})
-
-  const nonce = await web3.eth.getTransactionCount(from)
-
-  const tx = {
-    from,
-    to: fundAddress,
-    value: 0,
-    data,
-    "gasPrice": process.env.GASPRICE,
-    "gas": process.env.GAS,
-    "chainId": process.env.CHAINID,
-    nonce: nonce
-  }
-
-  return tx
-}
-
-module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
-  const tx = await createTx(key, fundAddress, amount, toToken, minReturn, dexType)
-  const signed  = await web3.eth.accounts.signTransaction(tx, key)
-  const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction)
-
-  return receipt.transactionHash
+  ).send({ from })
 }
