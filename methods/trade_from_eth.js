@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const { ETH_FUND_ABI } = require("../abi")
 const web3 = require("../utils/web3Provider")()
-const privateKeyToAccount = require("../utils/privateKeyToAccount")
 const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const getOneInchData = require("../utils/getOneInchData")
 const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
@@ -34,15 +33,23 @@ module.exports = async (key, fundAddress, amount, toToken, minReturn, dexType) =
     additionalData = await getOneInchData(ETH_ADDRESS, toToken, amountInWei, exchangePortal)
   }
 
-  // tx
-  return await contract.methods.trade(
-    ETH_ADDRESS,
-    amountInWei,
-    toToken,
-    dexType,
-    proof,
-    positions,
-    additionalData,
-    minReturn
-  ).send({ from, "gasPrice": process.env.GASPRICE, "gas": process.env.GAS, value:amountInWei })
+  let status = false
+  try{
+    // tx
+    await contract.methods.trade(
+      ETH_ADDRESS,
+      amountInWei,
+      toToken,
+      dexType,
+      proof,
+      positions,
+      additionalData,
+      minReturn
+    ).send({ from, "gasPrice": process.env.GASPRICE, "gas": process.env.GAS })
+    status = true
+  }catch(e){
+    console.log("Trade from ETH error : ",e)
+  }
+
+  return status
 }
