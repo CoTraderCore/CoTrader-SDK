@@ -1,6 +1,9 @@
 # CoTrader SDK
 
-# example usage
+# summary
+Create scripts to use DEXs like 1inch, Uniswap, Bancor, or any DeFi contract for pools, etc, and empower others to join your funds
+
+# example setup
 https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
 
 # todo
