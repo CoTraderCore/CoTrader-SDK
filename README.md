@@ -1,6 +1,6 @@
 # CoTrader SDK
 
-# Example usage
+# example usage
 https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
 
 # todo
