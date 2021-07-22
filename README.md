@@ -3,7 +3,12 @@
 # summary
 Create scripts to use DEXs like 1inch, Uniswap, Bancor, or any DeFi contract for pools, etc, and empower others to join your funds
 
-# example setup
+ETH funds: https://eth.cotrader.com
+BSC funds: https://bsc.cotrader.com
+
+https://cotrader.com for more info
+
+# example SDK setup
 https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
 
 # todo
@@ -11,12 +16,6 @@ https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
 1) Allow user select accounts, not hardcode account[0]
 2) Add deposit, withdraw. These can be done manually on ETH & BSC
 ```
-
-ETH funds: eth.cotrader.com
-BSC funds: bsc.cotrader.com
-
-cotrader.com for more info
-
 
 # create .env file
 ```
