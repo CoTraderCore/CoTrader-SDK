@@ -3,10 +3,11 @@
 # summary
 Create scripts to use DEXs like 1inch, Uniswap, Bancor, or any DeFi contract for pools, etc, and empower others to join your funds
 
-ETH funds: https://eth.cotrader.com
-BSC funds: https://bsc.cotrader.com
+ETH funds: [https://eth.cotrader.com] (eth.cotrader.com)
 
-https://cotrader.com for more info
+BSC funds: [https://bsc.cotrader.com] (bsc.cotrader.com)
+
+[https://cotrader.com] (cotrader.com) for more info
 
 # example SDK setup
 https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
