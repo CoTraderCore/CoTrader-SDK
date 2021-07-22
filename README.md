@@ -1,9 +1,12 @@
 # CoTrader SDK
 
+# Example usage
+https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
+
 # todo
 ```
 1) Allow user select accounts, not hardcode account[0]
-2) Add deposit, withdraw ect
+2) Add deposit, withdraw. These can be done manually on eth. & bsc.cotrader.com
 ```
 
 # create .env file
