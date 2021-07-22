@@ -9,10 +9,12 @@ https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
 # todo
 ```
 1) Allow user select accounts, not hardcode account[0]
-2) Add deposit, withdraw. These can be done manually on 
-https://eth.cotrader.com & 
-https://bsc.cotrader.com
-https://cotrader.com for more info
+2) Add deposit, withdraw. These can be done manually on ETH & BSC:
+
+<eth.cotrader.com>
+<bsc.cotrader.com>
+
+<cotrader.com> for more info
 ```
 
 # create .env file
