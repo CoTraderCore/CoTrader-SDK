@@ -3,7 +3,7 @@
 # summary
 Create scripts to use DEXs like 1inch, Uniswap, Bancor, or any DeFi contract for pools, etc, and empower others to join your funds
 
-ETH funds [eth.cotrader.com] (https://eth.cotrader.com)
+ETH funds [eth.cotrader.com] (eth.cotrader.com)
 
 BSC funds: [bsc.cotrader.com] (https://bsc.cotrader.com)
 
