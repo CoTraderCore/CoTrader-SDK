@@ -3,7 +3,6 @@ require('dotenv').config()
 const { ETH_FUND_ABI } = require("../abi")
 const web3 = require("../utils/web3Provider")()
 const getMerkleTreeData = require("../utils/getMerkleTreeData")
-const getOneInchData = require("../utils/getOneInchData")
 const wei = require("../utils/wei")
 
 module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
