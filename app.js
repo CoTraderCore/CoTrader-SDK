@@ -17,14 +17,14 @@ const fund = new Fund(key, rpc, netID, fundAddress)
 const ETH = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'  // ETH, BASE, BNB or MATIC we recognize by this address
 const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"
 
-// put your code inside this function
+// example execute trade from script
 async function app() {
-  // tx trade from bnb to busd token
+  // call tx trade from bnb to busd token
   const status = await fund.trade(
     ETH,
     BUSD,
-    "0.00001", // amount for swap
-    1 // Min return just 1 wei for test
+    "0.00001", // amount of BNB for swap
+    1 // Min return just 1 wei for test, you can define here min return you need
   )
   // log info
   console.log(`tx status ${status}`)
