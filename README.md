@@ -12,18 +12,9 @@ CoTrader site for more info https://cotrader.com
 # example SDK setup
 https://github.com/CoTraderCore/CoTrade-SDK/blob/main/app.js
 
-# todo
-```
-1) Allow users to select accounts rather than hardcode account[0]
-2) Add deposit and withdraw. These can be done manually on ETH & BSC
-```
-
 # create .env file
 ```
 WEB3_NODE="https://bsc-dataseed1.ninicoin.io/"
-GASPRICE=5000000000
-GAS=300000
-CHAINID=56
 KEY="YOUR PRIVATE KEY"
 ```
 
@@ -31,4 +22,9 @@ KEY="YOUR PRIVATE KEY"
 ```
 1) npm i
 2) node app
+```
+
+# todo
+```
+1) Add deposit and withdraw. These can be done manually on ETH & BSC
 ```

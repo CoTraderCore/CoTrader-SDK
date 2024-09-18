@@ -4,7 +4,7 @@ require('dotenv').config()
 const { Trade } = require('./methods')
 
 class Fund {
-  constructor(fundAddress){
+  constructor(key, rpc, netID, fundAddress){
     if(!key){
       console.log("Please provide fund admin key")
       return
