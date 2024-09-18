@@ -4,7 +4,7 @@ const WhiteListedTokens = require('../storage/WhiteListedTokens')
 require('dotenv').config()
 
 const buf2hex = x => '0x'+x.toString('hex')
-const WL = WhiteListedTokens(proces.env.CHAINID)
+const WL = WhiteListedTokens(process.env.CHAINID)
 const leaves = WL.map(x => keccak256(x)).sort(Buffer.compare)
 const tree = new MerkleTree(leaves, keccak256)
 // const root = buf2hex(tree.getRoot())

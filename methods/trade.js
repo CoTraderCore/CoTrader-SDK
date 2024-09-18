@@ -1,13 +1,14 @@
 require('dotenv').config()
 
 const { ETH_FUND_ABI } = require("../abi")
-const web3 = require("../utils/web3Provider")()
 const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const wei = require("../utils/wei")
 const TradeMethods = require('../storage/TradeMethods')
+const web3Provider = require("../utils/web3Provider")
 require('dotenv').config()
 
 module.exports = async (fundAddress, amount, fromToken, toToken, minReturn) => {
+  const web3 = web3Provider(process.env.KEY, process.env.WEB3_NODE)
   const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(amount), web3)
   const accounts = await web3.eth.getAccounts()
   const from = accounts[0]
