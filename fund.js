@@ -5,21 +5,24 @@ const { Trade } = require('./methods')
 
 class Fund {
   constructor(fundAddress){
-    if(!process.env.KEY){
-      console.log("Please settup KEY in .env file")
+    if(!key){
+      console.log("Please provide fund admin key")
       return
     }
 
-    if(!process.env.WEB3_NODE){
-      console.log("Please settup WEB3_NODE (rpc provider) in .env file")
+    if(!rpc){
+      console.log("Please provide rpc provider")
       return
     }
 
-    if(!process.env.CHAINID){
-      console.log("Please settup CHAINID in .env file, available 1 eth, 56 bnb, 137 matic, 8453 base")
+    if(!netID){
+      console.log("Please pass netID, available 1 eth, 56 bnb, 137 matic, 8453 base")
       return
     }
     this.fundAddress = fundAddress
+    this.netID = netID 
+    this.key = key
+    this.rpc = rpc
   }
 
   trade = async (fromToken, toToken, amount, minReturn) => {
@@ -30,7 +33,9 @@ class Fund {
       fromToken,
       toToken,
       minReturn,
-      this.dexType
+      this.netID,
+      this.key,
+      this.rpc
     )
   }
 }

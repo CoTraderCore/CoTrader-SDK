@@ -5,10 +5,9 @@ const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const wei = require("../utils/wei")
 const TradeMethods = require('../storage/TradeMethods')
 const web3Provider = require("../utils/web3Provider")
-require('dotenv').config()
 
-module.exports = async (fundAddress, amount, fromToken, toToken, minReturn) => {
-  const web3 = web3Provider(process.env.KEY, process.env.WEB3_NODE)
+module.exports = async (fundAddress, amount, fromToken, toToken, minReturn, netID, key, rpc) => {
+  const web3 = web3Provider(key, rpc)
   const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(amount), web3)
   const accounts = await web3.eth.getAccounts()
   const from = accounts[0]
@@ -19,7 +18,7 @@ module.exports = async (fundAddress, amount, fromToken, toToken, minReturn) => {
   } = getMerkleTreeData(toToken)
 
   const additionalData = "0x"
-  const dexType = TradeMethods(process.env.CHAINID)
+  const dexType = TradeMethods(netID)
 
   let status = false
   try{
