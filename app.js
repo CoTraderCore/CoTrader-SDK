@@ -6,10 +6,9 @@ const Fund = require('./fund')
 // define fund params
 const fundAddress = '0x3Ca7Ae3E7bd69546429BD86766A7681a47FBF7d0'
 const privateKey = process.env.KEY
-const dexType = 4
 
 // create fund instance
-const fund = new Fund(privateKey, fundAddress, dexType)
+const fund = new Fund(privateKey, fundAddress)
 
 // define some tokens addresses
 const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"

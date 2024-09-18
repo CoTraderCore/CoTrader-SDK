@@ -3,10 +3,9 @@
 const { Trade } = require('./methods')
 
 class Fund {
-  constructor(key, fundAddress, dexType){
+  constructor(key, fundAddress){
     this.key = key
     this.fundAddress = fundAddress
-    this.dexType = dexType
   }
 
   trade = async (fromToken, toToken, amount, minReturn) => {

@@ -4,8 +4,10 @@ const { ETH_FUND_ABI } = require("../abi")
 const web3 = require("../utils/web3Provider")()
 const getMerkleTreeData = require("../utils/getMerkleTreeData")
 const wei = require("../utils/wei")
+const TradeMethods = require('../storage/TradeMethods')
+require('dotenv').config()
 
-module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn, dexType) => {
+module.exports = async (fundAddress, amount, fromToken, toToken, minReturn) => {
   const amountInWei = await wei.toWeiByDecimalsDetect(fromToken, String(amount), web3)
   const accounts = await web3.eth.getAccounts()
   const from = accounts[0]
@@ -15,7 +17,8 @@ module.exports = async (key, fundAddress, amount, fromToken, toToken, minReturn,
     positions
   } = getMerkleTreeData(toToken)
 
-  let additionalData = "0x"
+  const additionalData = "0x"
+  const dexType = TradeMethods(process.env.CHAINID)
 
   let status = false
   try{
