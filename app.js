@@ -11,7 +11,7 @@ const netID = 56 // available 1 - eth, 56 - bnb, 137 - matic, 8453 - base
 
 // create fund instance
 const fund = new Fund(key, rpc, netID, fundAddress)
-const dex = "WHALEX" // Available "UNI-V2 for all, WHALEX for some"
+const dex = "UNI-V2" // Available "UNI-V2 for all, WHALEX for some"
 
 
 // define some tokens addresses
