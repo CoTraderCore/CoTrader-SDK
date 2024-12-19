@@ -7,7 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "axios": "^0.21.1",
+    "bignumber.js": "^9.0.1",
+    "dotenv": "^10.0.0",
+    "keccak256": "^1.0.3",
+    "merkletreejs": "^0.2.22",
     "web3": "1.0.0-beta.55",
-    "dotenv": "^10.0.0"
+    "web3-utils": "^1.4.0"
   }
 }
