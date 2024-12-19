@@ -2,6 +2,7 @@
 
 require('dotenv').config()
 const { Trade } = require('./methods')
+const TradeMethods = require('./storage/TradeMethods')
 
 class Fund {
   constructor(key, rpc, netID, fundAddress){
@@ -25,7 +26,9 @@ class Fund {
     this.rpc = rpc
   }
 
-  trade = async (fromToken, toToken, amount, minReturn, dexType) => {
+  trade = async (fromToken, toToken, amount, minReturn, dex) => {
+    const dexType = TradeMethods(netID, dex)
+
     return await Trade(
       process.env.KEY,
       this.fundAddress,
