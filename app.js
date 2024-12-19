@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 // import fund class
-const Fund = require('./fund')
+const Fund = require('./index')
 
 // define fund params
 const fundAddress = '0x3Ca7Ae3E7bd69546429BD86766A7681a47FBF7d0'
