@@ -26,11 +26,9 @@ class Fund {
     this.rpc = rpc
   }
 
-  trade = async (fromToken, toToken, amount, minReturn, dex) => {
-    const dexType = TradeMethods(netID, dex)
-
+  trade = async (fromToken, toToken, amount, minReturn, dex, accountIndex=0) => {
+    const dexType = TradeMethods(this.netID, dex)
     return await Trade(
-      process.env.KEY,
       this.fundAddress,
       amount,
       fromToken,
@@ -38,7 +36,8 @@ class Fund {
       minReturn,
       this.key,
       this.rpc,
-      dexType
+      dexType,
+      accountIndex
     )
   }
 }
